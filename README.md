@@ -12,11 +12,11 @@ The goal of this project is to be a DOM-based drop-in replacement for PHP's simp
 - Support for many more css selectors
 
 Features
-* Supports full set of css pseudo selectors plus many jquery extras: :not, :has, :contains, :gt, :lt, :eq
-* Use with css or xpath: $doc->find('h3 a'), $doc->find('//h3//a')
+* Supports full set of css pseudo selectors plus many jquery extras: `:not`, `:has`, `:contains`, `:gt`, `:lt`, `:eq`
+* Use with css or xpath: `$doc->find('h3 a'), $doc->find('//h3//a')`
 * Jquery-style functions replace, wrap, unwrap, before after
-* Nodeset math: $doc->find('a')->minus($doc->find('.skip_me'))
-* Lots of stuff that even BeautifulSoup and Nokogiri can't do: $doc->search('span:lt(7):not(.foo)')
+* Nodeset math: `$doc->find('a')->minus($doc->find('.skip_me'))`
+* Lots of stuff that even BeautifulSoup and Nokogiri can't do: `$doc->search('span:lt(7):not(.foo)')`
 * Lots more features that haven't been documented yet.
 
 If you love Advanced HTML Dom please [vote for it](http://stackoverflow.com/questions/3577641/how-do-you-parse-and-process-html-xml-in-php#27539256) here!
