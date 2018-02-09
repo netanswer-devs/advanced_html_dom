@@ -19,8 +19,8 @@ $tags = array('a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 
 define('TAG_REGEX', "/^(" . implode('|', $tags) . ")$/");
 define('TAGS_REGEX', "/^(" . implode('|', $tags) . ")e?s$/");
 
-define('ATTRIBUTE_REGEX', "/^(" . implode('|', $attributes) . "|data-\w+)$/");
-define('ATTRIBUTES_REGEX', "/^(" . implode('|', $attributes) . "|data-\w+)e?s$/");
+define('ATTRIBUTE_REGEX', "/^(" . implode('|', $attributes) . "|data-[\w\-]+)$/");
+define('ATTRIBUTES_REGEX', "/^(" . implode('|', $attributes) . "|data-[\w\-]+)e?s$/");
 
 class AdvancedHtmlBase{
   public $doc;
