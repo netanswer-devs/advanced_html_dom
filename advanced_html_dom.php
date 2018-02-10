@@ -19,8 +19,8 @@ $tags = array('a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 
 define('TAG_REGEX', "/^(" . implode('|', $tags) . ")$/");
 define('TAGS_REGEX', "/^(" . implode('|', $tags) . ")e?s$/");
 
-define('ATTRIBUTE_REGEX', "/^(" . implode('|', $attributes) . "|data-\w+)$/");
-define('ATTRIBUTES_REGEX', "/^(" . implode('|', $attributes) . "|data-\w+)e?s$/");
+define('ATTRIBUTE_REGEX', "/^(" . implode('|', $attributes) . "|data-[\w\-]+)$/");
+define('ATTRIBUTES_REGEX', "/^(" . implode('|', $attributes) . "|data-[\w\-]+)e?s$/");
 
 class AdvancedHtmlBase{
   public $doc;
@@ -438,7 +438,7 @@ class AHTMLNode extends AdvancedHtmlBase implements ArrayAccess{
 
 class CSS{
   private static function is_xpath($str){
-    return preg_match('/^\.?\//', $str);
+    return preg_match('/^\(?\.?\//', $str);
   }
 
   static function do_id($str){
