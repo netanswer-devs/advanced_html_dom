@@ -104,7 +104,7 @@ class AdvancedHtmlBase{
       case 'getelementsbyid': return isset($args[1]) ? $this->find('#' . $args[0], $args[1]) : $this->find('#' . $args[0]);
 
       // attributes
-      case 'hasattribute': return !$this->is_text && $this->node->getAttribute($args[0]);
+      case 'hasattribute': return !$this->is_text && $this->node->hasAttribute($args[0]);
       case 'getattribute': $arg = $args[0]; return $this->$arg;
       case 'setattribute': $arg0 = $args[0]; $arg1 = $args[1]; return $this->$arg0 = $arg1;
       case 'removeattribute': $arg = $args[0]; return $this->$arg = null;
