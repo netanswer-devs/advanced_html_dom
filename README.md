@@ -31,6 +31,6 @@ Add the following code to your composer.json
     },
     "autoload": {
        "classmap": ["vendor/hrmatching/advanced_html_dom/advanced_html_dom.php"]
-    },
+    }
 }
 ```
