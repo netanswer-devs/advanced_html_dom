@@ -20,3 +20,17 @@ Features
 * Lots more features that haven't been documented yet.
 
 If you love Advanced HTML Dom please [vote for it](http://stackoverflow.com/questions/3577641/how-do-you-parse-and-process-html-xml-in-php#27539256) here!
+
+# How to install it
+
+Add the following code to your composer.json
+```json
+{
+    "require": {
+        "hrmatching/advanced_html_dom": "dev-master"
+    },
+    "autoload": {
+       "classmap": ["vendor/hrmatching/advanced_html_dom/advanced_html_dom.php"]
+    }
+}
+```
