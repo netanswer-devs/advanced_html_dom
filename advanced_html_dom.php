@@ -132,6 +132,8 @@ class AdvancedHtmlBase{
       case 'childnodes':
         $nl = $this->search('./*');
         return isset($args[0]) ? $nl[$args[0]] : $nl;
+
+      
       case 'child': // including text/comment nodes
         $nl = $this->search('./*|./text()|./comment()');
         return isset($args[0]) ? $nl[$args[0]] : $nl;
@@ -147,7 +149,7 @@ class AdvancedHtmlBase{
       $arg2 = $m[2];
       return $this->$arg1($this->$arg2);
     }
-
+	  if (in_array($key,array('dom','node','doc'))) return;
     if(!preg_match(ATTRIBUTE_REGEX, $key, $m)) trigger_error('Unknown method or property: ' . $key, E_USER_WARNING);
     if(!$this->node || $this->is_text) return null;
     return $this->node->getAttribute($key);
@@ -156,6 +158,19 @@ class AdvancedHtmlBase{
   public function __get($key){
     return $this->$key();
   }
+  
+  public function destruct()
+  {
+	 $this->doc = NULL;
+	 $this->node = NULL;
+	 $this->dom = NULL;
+
+	 unset($this->node);
+	 unset($this->dom);
+	 unset($this->doc);
+
+  }
+  
 }
 
 class AdvancedHtmlDom extends AdvancedHtmlBase{
@@ -183,6 +198,20 @@ class AdvancedHtmlDom extends AdvancedHtmlBase{
   // special cases
   public function text(){ return $this->root->text; }
   public function title(){ return $this->at('title')->text(); }
+  
+  public function destruct()
+  {
+		$this->xpath = NULL;
+	  $this->root = NULL;
+	  $this->dom = NULL;
+	  $this->doc = NULL;
+
+	  unset($this->xpath);
+	  unset($this->root);
+	  unset($this->dom);
+	  unset($this->doc);
+
+	}
 
 }
 
@@ -195,6 +224,17 @@ class AHTMLNodeList implements Iterator, Countable, ArrayAccess{
     $this->nodeList = $nodeList;
     $this->doc = $doc;
   }
+  
+  public function destruct()
+  {
+	 $this->nodeList = NULL;
+	 $this->doc = NULL;
+	 $this->counter = NULL;
+
+	 unset($this->doc);
+	 unset($this->nodeList);
+	 unset($this->counter);
+  } 
 
   /*
   abstract public boolean offsetExists ( mixed $offset )
@@ -331,7 +371,20 @@ class AHTMLNode extends AdvancedHtmlBase implements ArrayAccess{
     $this->doc = $doc;
     $this->is_text = !!($node->nodeName == '#text');
   }
+  public function destruct()
+  {
+	  $this->_path = NULL;
+	  $this->doc = NULL;
+	  $this->node = NULL;
+	  $this->dom = NULL;
 
+	  unset($this->_path);
+	  unset($this->doc);
+	  unset($this->node);
+	  unset($this->dom);
+
+  }
+  
   private function get_fragment($html){
     $dom = $this->doc->dom;
     $fragment = $dom->createDocumentFragment() or die('nope');
@@ -412,6 +465,9 @@ class AHTMLNode extends AdvancedHtmlBase implements ArrayAccess{
       //default: trigger_error('Unknown property: ' . $key, E_USER_WARNING);
       //case 'name': return $this->node->nodeName;
     }
+   
+    if (in_array($key,array('_path','dom','doc','node'))) return;
+    
     //trigger_error('Unknown property: ' . $key, E_USER_WARNING);
     if($value === null){
       $this->node->removeAttribute($key);
